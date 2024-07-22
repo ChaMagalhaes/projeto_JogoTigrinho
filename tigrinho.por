@@ -2,15 +2,15 @@ programa
 {
 	inclua biblioteca Tipos --> tp
 	inclua biblioteca Texto --> t
-	inclua biblioteca Util --> u
+	inclua biblioteca Util --> u
 
 	
 	inteiro sorteioMoeda = 0, sorteioDado = 0
-	inteiro tigrinho = 0, fazendeiro = 0
+	inteiro tigrinho = 0, fazendeiro = 0
 	
 	funcao inicio()
 	{
-		menu()
+		
 	}
 
 	funcao logico moeda(){
@@ -25,65 +25,62 @@ programa
 
 	funcao inteiro dado(){
 		
-		sorteioDado = u.sorteia(1, 6)
+		sorteioDado = u.sorteia(1, 6) //dado 1 de 6
 
 		retorne sorteioDado
 	}
 	
 	funcao inteiro menu(){
-		caracter x
-		cadeia selecao
+		
+		caracter selecao 
+		cadeia opcao
 		inteiro selecaoMenu = 0
 		logico repete = falso
 
 		faca{
+			escreva("ESCOLHA TIPO DE JOGO\n\n" +
+			"1) UM JOGADOR\n" +
+			"2) DOIS JOGADORES\n" +
+			"3) VERIFICAR PLACAR\n" +
+			"4) SAIR\n\n" +
+			"> ")
+		
+			leia(opcao)
+		
+			se(t.numero_caracteres(opcao) == 1){
+				selecao = tp.cadeia_para_caracter(opcao)
+				repete = falso
 			
-		escreva("ESCOLHA TIPO DE JOGO\n\n" +
-		"1) UM JOGADOR\n" +
-		"2) DOIS JOGADORES\n" +
-		"3) VERIFICAR PLACAR\n" +
-		"4) SAIR\n\n")
-			
-		leia(selecao)
-
-		se(t.numero_caracteres(selecao) == 1){
-
-		x = tp.cadeia_para_caracter(selecao)
-			
-			escolha(x){
-			caso '1':
-				escreva("Um jogador")
-				selecaoMenu = 1
-			pare
-			caso '2': 
-				escreva("Dois Jogador")
-				selecaoMenu = 2
-			pare
-			caso '3':
-				escreva("Verificar Placar")
-				selecaoMenu = 3
-			pare
-			caso '4':
-				escreva("Sair")
-				selecaoMenu = 4
+				escolha(selecao){
+					caso '1':
+						selecaoMenu = 1
+					pare
 				
-			pare
-			caso contrario:
-				escreva("Escolha invalido")
-				selecaoMenu = 0
-				repete = verdadeiro
+					caso '2': 
+						selecaoMenu = 2
+					pare
+					
+					caso '3':
+						selecaoMenu = 3
+					pare
 				
-			pare
-			
+					caso '4':
+						selecaoMenu = 4
+					pare
+					
+					caso contrario:
+						escreva("Escolha invalido")
+						repete = verdadeiro
+					pare
+				}
+			}senao{
+				escreva("Escolha inexistente")
 			}
-
-		}senao{
-			escreva("Escolha inexistente")
-		}
+			
 			u.aguarde(2000)
 			limpa()
 			
-		}enquanto(repete != falso)
+		}enquanto(repete == verdadeiro)
 		
 		retorne selecaoMenu
 	}
@@ -93,7 +90,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 707; 
+ * @POSICAO-CURSOR = 497; 
+ * @DOBRAMENTO-CODIGO = [15, 25, 32];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
