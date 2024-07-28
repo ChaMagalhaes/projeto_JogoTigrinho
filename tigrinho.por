@@ -7,11 +7,10 @@ programa
 	
 	inteiro sorteioMoeda = 0, sorteioDado = 0
 	inteiro tigrinho = 0, fazendeiro = 0
-	cadeia pista[3][20]
 	
 	funcao inicio()
-	{
-		menu()	
+	{	
+		menu()
 	}
 
 	funcao logico moeda(){
@@ -34,104 +33,61 @@ programa
 	funcao inteiro menu(){
 		
 		caracter selecao 
-		cadeia opcao
+		cadeia opcao, caraCoroa
 		inteiro selecaoMenu = 0
 		logico repete = falso
 
 
 		faca{
 			escreva("ESCOLHA TIPO DE JOGO\n\n" +
-			"1) UM JOGADOR\n" +
-			"2) DOIS JOGADORES\n" +
-			"3) VERIFICAR PLACAR\n" +
-			"4) SAIR\n\n" +
+			"1) JOGAR\n" +
+			"2) VERIFICAR PLACAR\n" +
+			"3) SAIR\n\n" +
 			"> ")
 		
-			leia(opcao)
+			leia(opcao) //selecaoMenu
 		
 			se(t.numero_caracteres(opcao) == 1){
 				selecao = tp.cadeia_para_caracter(opcao)
 				repete = falso
-			
+				
 				escolha(selecao){
 					caso '1':
-						selecaoMenu = 1
+						u.aguarde(1500)
+						limpa()
+						
+						escreva("Objetivo do Jogo:\n\n" + 
+						"Como fazendeiro, seu objetivo é chegar à casa 20 antes do tigrinho para proteger o seu trigo precioso.\n" +
+						"Role os dados, avance pelo tabuleiro e supere obstáculos. Vença a corrida e garanta seu trigo.\n" +
+						"Boa sorte!")
+						u.aguarde(5000)
+						limpa()
+
+						faca{
+							
+						escreva("Quem joga primeiro?\n\n" + 
+						"Escolha um lado da moeda:\n1) Cara\n2) Coroa\n\n> ")
+						leia(caraCoroa)
+						se((caraCoroa == "1" e moeda() == falso)){
+							escreva("Que sorte caiu cara! você irá começar")
+						}senao se((caraCoroa == "2" e moeda() == verdadeiro)){
+							escreva("Que sorte caiu coroa! você irá começar")
+						}senao{
+							escreva("Tigrinho irá começar")
+						}
+
+						u.aguarde(3000)
+						limpa()
+						}enquanto(caraCoroa != "1" e caraCoroa!= "2")
+						
 					pare
 				
 					caso '2':
-						se(moeda() == verdadeiro){
-							escreva("Jogador 1 será o Tigrinho!\n")
-							escreva("Jogador 2 será o Fazenderio!\n ")
-						}senao{
-							escreva("Jogador 1 será o Fazendeiro!\n")
-							escreva("Jogador 2 será o Tigrinho!")
-
-							u.aguarde(1700)
-							limpa()
-							
-							escreva("Jogando a moeda!\n")
-							se(moeda() == falso){
-								escreva("Jogador 2 começara\n")
-								logico jogada = falso
-								faca{
-									dado()
-									se(jogada == falso){
-										escreva("Jogador 2 tirou: ", dado(), " no dado.")
-										tigrinho += dado()
-										jogada = verdadeiro
-									}senao{
-										escreva("Jogador 1 tirou: ", dado(), " no dado.")
-										fazendeiro += dado()
-										jogada = falso
-									}
-									
-									para(inteiro i = 1; i <= 20; i++){
-										se(tigrinho == i e fazendeiro == i){
-											escreva("[T,F]")
-										}senao se(fazendeiro == i){
-											escreva("[F]")
-										}senao se(tigrinho == i){
-											escreva("[T]")
-										}senao{
-											escreva(" ",i," ")
-										}
-									}
-									u.aguarde(3000)
-									limpa()
-									
-								}enquanto(tigrinho <= 20 e fazendeiro <= 20)
-							}senao{
-								escreva("Jogador 1 começara")
-							}
-							
-						}
-						
-
-						escreva("Jogando a moeda!")
-						se(moeda() == falso){
-							escreva("Jogador 2 começara")
-
-							faca{
-								dado()
-								escreva("Jogador 2 tirou: ", sorteioDado, " no dado.")
-								
-							}enquanto(tigrinho <= 20 ou fazendeiro <= 20)
-							
-						}senao{
-							escreva("Jogador 1 começara")
-						}
-						
-
-						
-						
+						selecaoMenu = 2
 					pare
 					
 					caso '3':
 						selecaoMenu = 3
-					pare
-				
-					caso '4':
-						selecaoMenu = 4
 					pare
 					
 					caso contrario:
@@ -156,10 +112,10 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1742; 
- * @DOBRAMENTO-CODIGO = [16];
+ * @POSICAO-CURSOR = 1849; 
+ * @DOBRAMENTO-CODIGO = [15, 25];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
+ * @SIMBOLOS-INSPECIONADOS = {sorteioMoeda, 8, 9, 12}-{sorteioDado, 8, 27, 11};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
