@@ -30,3 +30,4 @@ _casa 19: deve voltar para a casa 1._
 
 _casa 20: recebe a mensagem de vencedor da partida._
 
+<img src="/assents/img/bannerTigrinho.jpg" width="200">
