@@ -13,6 +13,7 @@ programa
 	
 	funcao inicio()
 	{	
+		
 		menu()
 	}
 
@@ -53,7 +54,7 @@ programa
 			se(t.numero_caracteres(opcao) == 1){
 				selecao = tp.cadeia_para_caracter(opcao)
 
-				repete = verdadeiro
+				repete = falso
 				escolha(selecao){
 					caso '1':
 						u.aguarde(1500)
@@ -63,37 +64,36 @@ programa
 						"Como fazendeiro, seu objetivo é chegar à casa 20 antes do tigrinho para proteger o seu trigo precioso.\n" +
 						"Role os dados, avance pelo tabuleiro e supere obstáculos. Vença a corrida e garanta seu trigo.\n" +
 						"Boa sorte!")
+						
 						u.aguarde(5500)
 						limpa()
 
 						faca{
+							escreva("Quem joga primeiro?\n\n" + 
+							"Escolha um lado da moeda:\n1) Cara\n2) Coroa\n\n> ")
+							leia(caraCoroa)
 							
-						escreva("Quem joga primeiro?\n\n" + 
-						"Escolha um lado da moeda:\n1) Cara\n2) Coroa\n\n> ")
-						leia(caraCoroa)
-						
-						u.aguarde(1500)
-						limpa()
-						
-						se((caraCoroa == "1" e moeda() == falso) ou (caraCoroa == "2" e moeda() == verdadeiro)){
-							escreva("Que sorte! você irá começar")
-							u.aguarde(2000)
+							u.aguarde(2500)
 							limpa()
-							turnoJogador = verdadeiro
-							tabuleiro()
-							
-							
-						}senao{
-							escreva("Que pena você perdeu! O Tigrinho irá começar")
-							u.aguarde(2000)
-							limpa()
-							tabuleiro()
-						}
-
-						u.aguarde(3000)
-						limpa()
+						
+							se((caraCoroa == "1" e moeda() == falso) ou (caraCoroa == "2" e moeda() == verdadeiro)){
+								escreva("Que sorte! você irá começar")
+								
+								turnoJogador = verdadeiro
+								u.aguarde(3500)
+								limpa()
+								
+								tabuleiro()
+							}senao{
+								escreva("Que pena você perdeu! O Tigrinho irá começar")
+	
+								turnoJogador = falso
+								u.aguarde(3500)
+								limpa()
+								
+								tabuleiro()
+							}
 						}enquanto(caraCoroa != "1" e caraCoroa!= "2")
-						
 					pare
 				
 					caso '2':
@@ -101,31 +101,35 @@ programa
 					pare
 					
 					caso '3':
-						repete = falso
+						repete = verdadeiro
 					pare
 					
 					caso contrario:
-						escreva("Escolha invalido")
+						limpa()
+						escreva("Escolha invalida")
 					pare
 				}
 			}senao{
+				limpa()
 				escreva("Escolha inexistente")
 			}
 			
-			u.aguarde(2000)
+			u.aguarde(3500)
 			limpa()
 			
-		}enquanto(repete == verdadeiro)
+		}enquanto(repete == falso)
 		
 		retorne selecaoMenu
 	}
 
 	funcao tabuleiro(){
-		
 		cadeia jogarDado
-		escreva("JOGO INICIADOOOO!\n\n")
+		
 		fazendeiro = 1
 		tigrinho = 1
+		
+		escreva("JOGO INICIADOOOO! Prepare-se\n\n")
+		
 		faca{
 			//tabuleiro
 			para(inteiro i = 1; i <= 20; i++){
@@ -143,37 +147,38 @@ programa
 			limpa()
 			
 			se(turnoJogador == verdadeiro){
-				escreva("Turno do fazendeiro/Jogador\n\n")
+				escreva("Turno do Fazendeiro/Jogador!\n\n")
 				turnoJogador = falso
-				
+
 				faca{
+					jogarDado = "" // resetando a escolha do usuario
+					
 					escreva("1) Jogar dado\n" +
 					"2) Desistir do jogo\n\n> ")
 					leia(jogarDado)
-	
+					limpa()
+					
 					se(jogarDado == "1"){
 						dado()
 						fazendeiro += sorteioDado
-						limpa()
 						escreva("Você tirou [", sorteioDado,"]\n\n")
-						regras(fazendeiro)
+						obstaculo(fazendeiro, "Fazendeiro")
 					}senao se(jogarDado == "2"){
 						tigrinho = 20
 					}senao{
-						escreva("\n\nOpção escolhida não existe")
-						u.aguarde(2000)
+						escreva("Opção escolhida não existe")
+						u.aguarde(2500)
 						limpa()
 					}
 				}enquanto(jogarDado != "1" e jogarDado != "2")
-				jogarDado = "" // resetando a escolha do usuario
 			}senao{
-				escreva("Turno do tigrinho, ")
+				escreva("Turno do Tigrinho! ")
 				turnoJogador = verdadeiro
 				dado()
 				tigrinho += sorteioDado
 				escreva("ele tirou [", sorteioDado, "].\n\n")
-				regras(tigrinho)
-				u.aguarde(2000)
+				obstaculo(tigrinho, "Tigrinho")
+				u.aguarde(2500)
 			}
 		}enquanto(tigrinho <  20 e fazendeiro < 20)
 		
@@ -193,34 +198,48 @@ programa
 		u.aguarde(3000)
 	}
 
-	funcao regras(inteiro x){
+	funcao obstaculo(inteiro x, cadeia y){
 
 		escolha(x){
 			caso 2:
+				escreva(y, " está tão motivado que correu para casa 5\n\n")
 				se(turnoJogador == falso){
 					fazendeiro += 3
 				}senao{
 					tigrinho += 3
 				}
+				u.aguarde(3500)
 			pare
 
 			caso 3:
+				inteiro dadoExtra = 0
+			
+				escreva(y," Achou um atalho nos matos e agora ganha um dado extra para rolar de 1 a 3!\n\n")
 				se(turnoJogador == falso){
-					fazendeiro += u.sorteia(1, 3) 
+					dadoExtra = u.sorteia(1, 3)
+					escreva("Você tirou [",dadoExtra,"]\n\n")
+					fazendeiro += dadoExtra
 				}senao{
-					tigrinho += u.sorteia(1, 3) 
+					dadoExtra = u.sorteia(1, 3)
+					escreva("Tigrinho tirou [",dadoExtra,"]\n\n")
+					tigrinho += dadoExtra 
 				}
+				u.aguarde(3500)
 			pare
 
 			caso 7:
 				se(turnoJogador == falso){
+					escreva("QUE SORTEE! O Tigrinho caiu na armadilha e agora está fora de ação no próximo turno!\n\n")
 					turnoJogador = verdadeiro
 				}senao{
+					escreva("O Fazendeiro caiu na cilada e vai ter que ficar fora do jogo no próximo turno!\n\n")
 					turnoJogador = falso
 				}
+				u.aguarde(3500)
 			pare
 
 			caso 10:
+				escreva(y," usou troca de lugar!\n\n")
 				se(turnoJogador == falso){
 					inteiro trocar
 					
@@ -234,33 +253,38 @@ programa
 					tigrinho = fazendeiro
 					fazendeiro = trocar
 				}
+				u.aguarde(3500)
 			pare
 
 			caso 12:
+				escreva("O ",y, " tropeçou e voltou uma casa\n\n")
 				se(turnoJogador == falso){
 					fazendeiro--
 				}senao{
 					tigrinho--	
 				}
+				u.aguarde(3500)
 			pare
 
 			caso 15:
+				escreva("O pato forrozeiro apareceu e quer um show! Cante um trecho da sua música favorita ou, se for tímido, volte 2 casas.\n\n")
+				
 				se(turnoJogador == falso){
 					cadeia cantarVoltar
 					inteiro som = s.carregar_som("musicaAmiga.mp3")
 				
 					faca{
-						escreva("1) Quer cantar ou\n"+
-						"2) voltar 2 casas?")
+						escreva("Faça sua escolha:\n" +
+						"1) Cantar ou\n"+
+						"2) Voltar 2 casas?\n\n> ")
 						leia(cantarVoltar)
+						limpa()
 						
 						se(cantarVoltar == "1"){
 							s.reproduzir_som(som, verdadeiro)
-							s.definir_volume(50)
+							s.definir_volume(400)
 
-							limpa()
-
-							para(inteiro i = 15; i>=0; i--){
+							para(inteiro i = 15; i>=0; i--){ //contador de 15 segundos para começar o ritmo
 								se(i == 0){
 									escreva("VAIIIIIIIIII\n\n")
 									u.aguarde(2200)
@@ -271,38 +295,52 @@ programa
 								}	
 							}
 							limpa()
-						
+							
 							escreva("Ela é amiga da minha mulher\n" +
 							"Pois é, pois é\n" +
 							"Mas vive dando em cima de mim\n" +
 							"Enfim, enfim\n\n")
+							
 							u.aguarde(10000)
 							limpa()
+							
 		          			escreva("Ainda por cima é uma tremenda gata\n" +
 							"Pra piorar minha situação\n" +
 							"Se fosse mulher feia, tava tudo certo\n" +
 							"Mulher bonita mexe com meu coração\n\n")
+							
 							u.aguarde(8000)
 							limpa()
+							
 							escreva("Se fosse mulher feia, tava tudo certo\n" +
 							"Mulher bonita mexe com meu coração\n")
+							
 							u.aguarde(5000)
-						
 							s.interromper_som(som)
 							s.liberar_som(som)
+							limpa()
 						}senao se(cantarVoltar == "2"){
 							fazendeiro -= 2
 						}senao{
 							escreva("Opção escolhida não existe")
+							u.aguarde(2500)
+							limpa()
 						}
 					}enquanto(cantarVoltar != "1" e cantarVoltar != "2")
+					
 				}senao{
-					se(u.sorteia(1, 10) > 8){
+					se(u.sorteia(1, 10) >= 7){
 						tigrinho -= 2
+						escreva("Tigrinho está tímido e preferiu voltar 2 casas.\n\n")
+						u.aguarde(2500)
 					}senao{
-						inteiro som = s.carregar_som("musicaIa")
+						escreva("Tigrinho vai dar um show!!")
+						u.aguarde(3000)
+						limpa()
+						
+						inteiro som = s.carregar_som("musicaIa.mp3")
 						s.reproduzir_som(som, falso)
-						s.definir_volume(80)
+						s.definir_volume(400)
 						u.aguarde(30000)
 						s.interromper_som(som)
 						s.liberar_som(som)
@@ -311,23 +349,46 @@ programa
 			pare
 
 			caso 19:
+				escreva("O ",y, " ficou cansado volte uma casa\n\n")
 				se(turnoJogador == falso){
-					fazendeiro -= 1
+					fazendeiro --
 				}senao{
-					tigrinho -= 1
+					tigrinho --
 				}
+				u.aguarde(3500)
+				limpa()
 			pare
 			
 		}
 	}
 
 	funcao placar(inteiro x, inteiro y){
+		
 		limpa()
 		escreva("		PLACAR\n" +
 		"------------------------------------------\n\n" +
 		"Tigrinho: [",x,"]              Fazendeiro [",y,"]\n\n"+
 		"-------------------------------------------"
 		)
+	}
+
+	funcao textoRegra(){
+		escreva("Detalhes do percurso:\n\n" +
+		"O percurso deve ter 20 casas totais. Ambos os jogadores começam na casa 1.\n" +
+		"O dado que sorteia os números para os jogadores percorrerem deve ter 6 faces, com a\n" +
+		"numeração de 1 a 6.\n\n" +
+		"As seguintes casas do percurso devem ter as funcionalidades descritas a seguir:\n" +
+		"- casa 2: deve avançar o jogador para a casa 5.\n" +
+		"- casa 3: deve jogar um dado adicional de 3 lados.\n" +
+		"- casa 7: deve impedir que o jogador jogue o dado por 1 rodada.\n" +
+		"- casa 10: deve trocar as casa em que os jogadores estão.\n" +
+		"- casa 12: deve retroceder 1 casa.\n" +
+		"- casa 15: deve cantar um trecho de uma música (na vida real) ou voltar 2 casas.\n"+
+		"- casa 19: deve voltar para a casa 1.\n" +
+		"- casa 20: recebe a mensagem de vencedor da partida")
+
+		u.aguarde(20000)
+		limpa()
 	}
 }
 
@@ -336,10 +397,10 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3909; 
- * @DOBRAMENTO-CODIGO = [13, 18, 28, 195];
+ * @POSICAO-CURSOR = 5621; 
+ * @DOBRAMENTO-CODIGO = [19, 29, 36, 364, 374];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {sorteioDado, 9, 27, 11}-{tigrinho, 10, 9, 8}-{fazendeiro, 10, 23, 10};
+ * @SIMBOLOS-INSPECIONADOS = {tigrinho, 10, 9, 8}-{fazendeiro, 10, 23, 10};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
