@@ -2,13 +2,13 @@
 ### _**Jogo do Tigrinho🐯**_
 
 
-🔸 _**Lider:**_ _Fernando_
+🔸 _**Lider:**_ _[_Fernando_](https://github.com/mendesfigueiredo)_
 
-🔸 _**Participantes:**_ _Charles, Hugo_
+🔸 _**Participantes:**_ _[_Charles](https://github.com/CharlesCamumila)_ , _[Hugo_](https://github.com/Ghost-Black777)_
 
 🔸 _**Pseudocódigo:**_ _Portugol Studio_
 
-🔸 _**Orientador do Projeto:**_ _Gilberto_
+🔸 _**Orientador do Projeto:**_ _[_Gilberto_](https://github.com/gvoliveira)_
 
 _**Projeto:**_ _O projeto tem como ideia montar um jogo de tabuleiro que tem 20(vinte) casas para os personagens se movimentarem, quem chegar a última primeira ganha o jogo. Foi nos passado, pelas informações do projeto que deveriamos fazer uma história ou contexto por trás desses persongens e o porque deles competirem para chegar ao final. Nosso contexto é que um tigre, mais conhecido como Tigrinho. Ele invade a fazenda do senhor João, ele produz trigo. O Tigrinho rouba os trigos do fazendeiro, que fica furioso e corre atrás dele e com isso começamos o jogo._
 
@@ -29,3 +29,4 @@ _casa 15: deve cantar um trecho de uma música (na vida real) ou voltar 2 casas.
 _casa 19: deve voltar para a casa 1._
 
 _casa 20: recebe a mensagem de vencedor da partida._
+
