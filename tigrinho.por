@@ -271,7 +271,7 @@ programa
 				
 				se(turnoJogador == falso){
 					cadeia cantarVoltar
-					inteiro som = s.carregar_som("musicaAmiga.mp3")
+					inteiro som = s.carregar_som("./assents/musica/toqueMusica.mp3")
 				
 					faca{
 						escreva("Faça sua escolha:\n" +
@@ -332,13 +332,13 @@ programa
 					se(u.sorteia(1, 10) >= 7){
 						tigrinho -= 2
 						escreva("Tigrinho está tímido e preferiu voltar 2 casas.\n\n")
-						u.aguarde(2500)
+						u.aguarde(4000)
 					}senao{
 						escreva("Tigrinho vai dar um show!!")
-						u.aguarde(3000)
+						u.aguarde(4000)
 						limpa()
 						
-						inteiro som = s.carregar_som("musicaIa.mp3")
+						inteiro som = s.carregar_som("./assents/musica/IaCantando.mp3")
 						s.reproduzir_som(som, falso)
 						s.definir_volume(400)
 						u.aguarde(30000)
@@ -397,7 +397,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 5621; 
+ * @POSICAO-CURSOR = 7283; 
  * @DOBRAMENTO-CODIGO = [19, 29, 36, 364, 374];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {tigrinho, 10, 9, 8}-{fazendeiro, 10, 23, 10};
