@@ -143,13 +143,13 @@ programa
 					escreva(i,"  ")	
 				}
 			}
+			
 			u.aguarde(5000)
 			limpa()
 			
 			se(turnoJogador == verdadeiro){
 				escreva("Turno do Fazendeiro/Jogador!\n\n")
 				turnoJogador = falso
-
 				faca{
 					jogarDado = "" // resetando a escolha do usuario
 					
@@ -162,6 +162,7 @@ programa
 						dado()
 						fazendeiro += sorteioDado
 						escreva("Você tirou [", sorteioDado,"]\n\n")
+						u.aguarde(2500)
 						obstaculo(fazendeiro, "Fazendeiro")
 					}senao se(jogarDado == "2"){
 						tigrinho = 20
@@ -177,8 +178,8 @@ programa
 				dado()
 				tigrinho += sorteioDado
 				escreva("ele tirou [", sorteioDado, "].\n\n")
-				obstaculo(tigrinho, "Tigrinho")
 				u.aguarde(2500)
+				obstaculo(tigrinho, "Tigrinho")
 			}
 		}enquanto(tigrinho <  20 e fazendeiro < 20)
 		
@@ -217,11 +218,11 @@ programa
 				escreva(y," Achou um atalho nos matos e agora ganha um dado extra para rolar de 1 a 3!\n\n")
 				se(turnoJogador == falso){
 					dadoExtra = u.sorteia(1, 3)
-					escreva("Você tirou [",dadoExtra,"]\n\n")
+					escreva("Você tirou + [",dadoExtra,"]\n\n")
 					fazendeiro += dadoExtra
 				}senao{
 					dadoExtra = u.sorteia(1, 3)
-					escreva("Tigrinho tirou [",dadoExtra,"]\n\n")
+					escreva("Tigrinho tirou + [",dadoExtra,"]\n\n")
 					tigrinho += dadoExtra 
 				}
 				u.aguarde(3500)
@@ -397,8 +398,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 7283; 
- * @DOBRAMENTO-CODIGO = [19, 29, 36, 364, 374];
+ * @POSICAO-CURSOR = 3225; 
+ * @DOBRAMENTO-CODIGO = [19, 29, 36, 365, 375];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {tigrinho, 10, 9, 8}-{fazendeiro, 10, 23, 10};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
