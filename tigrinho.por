@@ -13,7 +13,6 @@ programa
 	
 	funcao inicio()
 	{	
-		
 		menu()
 	}
 
@@ -54,7 +53,8 @@ programa
 			se(t.numero_caracteres(opcao) == 1){
 				selecao = tp.cadeia_para_caracter(opcao)
 
-				repete = falso
+				repete = verdadeiro
+				
 				escolha(selecao){
 					caso '1':
 						u.aguarde(1500)
@@ -101,7 +101,7 @@ programa
 					pare
 					
 					caso '3':
-						repete = verdadeiro
+						repete = falso
 					pare
 					
 					caso contrario:
@@ -117,7 +117,7 @@ programa
 			u.aguarde(3500)
 			limpa()
 			
-		}enquanto(repete == falso)
+		}enquanto(repete == verdadeiro)
 		
 		retorne selecaoMenu
 	}
@@ -393,13 +393,15 @@ programa
 	}
 }
 
+
+
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3225; 
- * @DOBRAMENTO-CODIGO = [19, 29, 36, 365, 375];
+ * @POSICAO-CURSOR = 985; 
+ * @DOBRAMENTO-CODIGO = [18, 124, 201, 365, 375];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {tigrinho, 10, 9, 8}-{fazendeiro, 10, 23, 10};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
