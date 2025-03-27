@@ -4,7 +4,7 @@
 
 🔸 _**Lider:**_ _[_Fernando_](https://github.com/mendesfigueiredo)_
 
-🔸 _**Participantes:**_ _[_Charles](https://github.com/CharlesCamumila)_ , _[Hugo_](https://github.com/Ghost-Black777)_
+🔸 _**Participantes:**_ _[_Charles](https://github.com/ChaMagalhaes)_ , _[Hugo_](https://github.com/Ghost-Black777)_
 
 🔸 _**Pseudocódigo:**_ _Portugol Studio_
 
